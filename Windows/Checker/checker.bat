@@ -33,3 +33,4 @@ if %used% gtr %limit% (
 		goto :loop
 	)
 )
+cd ../
