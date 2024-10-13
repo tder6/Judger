@@ -1,6 +1,6 @@
 limit=1000  
 mkdir -p judge
-g++ a.cpp -o judge/code -O2 -std=c++14 -W 
+g++ code.cpp -o judge/code -O2 -std=c++14 -W 
 list=`ls ./*out 2> judge/err.txt`
 for out in $list; do 
 	ans=`echo $out | sed "s/\.out/\.ans/"`
