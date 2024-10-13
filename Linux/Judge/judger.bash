@@ -1,6 +1,6 @@
 limit=1000  
 mkdir -p judge
-g++ code.cpp -o judge/code -O2 -std=c++14 -W 
+g++ a.cpp -o judge/code -O2 -std=c++14 -W 
 list=`ls ./*out 2> judge/err.txt`
 for out in $list; do 
 	ans=`echo $out | sed "s/\.out/\.ans/"`
@@ -10,13 +10,13 @@ list=`ls ./*in`
 for in in $list; do 
 	name=`echo $in | sed "s/\.in/\ /"`; name=`echo $name | sed "s/\.\//\ /"`
 	ans=`echo $in | sed "s/\.in/\.ans/"`
-	cp $in judge/in.txt
-	cp $ans judge/ans.txt
+	out=`echo $in | sed "s/\.in/\.out/"`
+	res=`echo $in | sed "s/\.in/\.res/"`
 	start=`date +%s%N`
-	./judge/code < judge/in.txt > judge/out.txt
+	./judge/code < $in > $out
 	end=`date +%s%N`
 	used=$(((end-start)/1000000))
-	diff -bBw judge/out.txt judge/ans.txt > judge/res.txt  
+	diff -bBw $out $ans > $res 
     result=$?    
     if [ $result -ne 0 ]; then  
         echo -e "Test Case$name: \e[31mWrong Answer\e[0m ($used ms)"  
